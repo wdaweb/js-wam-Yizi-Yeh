@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel&display=swap"
+    rel="stylesheet"
+  />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Cinzel", serif;
+      }
+
+      .bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: -999;
+      }
+
+      .bg img {
+        min-height: 100%;
+        width: 100%;
+      }
+
+      #keyboard {
+        margin: auto;
+      }
+
+    td {
+        height: 40px;
+        min-width: 20px;
+        padding: 0 10px;
+        margin: 2px 10px;
+        background: #ededed;
+        border-radius: 10px;
+        box-shadow: 2px 3px 0px 0px rgba(0, 0, 0, 0.3);
+        color: #808080;
+        font-family: inherit;
+        text-align: center;
+        line-height: 40px;
+        display: inline-block;
+      }
+
+      #gamen {
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        height: 300px;
+        width: 1200px;
+        background-color: #f9f9f9;
+        background-image: -moz-linear-gradient(center top, #eee, #f9f9f9, #eee);
+        border: 1px solid #aaa;
+        border-radius: 10px;
+        box-shadow: 1px 2px 2px #ddd;
+        font-family: inherit;
+        font-weight: bold;
+        font-size: 45px;
+        line-height: 300px;
+        text-align: center;
+        color: #666;
+        position: relative;
+      }
+      
+      p {
+        margin: auto;
+      }
+
+      .add-tan {
+        color: teal;
+        font-size: 36px;
+      }
+
+      .add-yellow {
+        background: teal;
+        color: white;
+      }
+
+      #space {
+        width: 80px;
+      }
+
+      span {
+        /*  (所有變化，在一秒內過渡，舒緩變化方式，沒有延遲) transition: all 1s ease 0s; */
+        transition: all 0.5s ease 0s;
+      }
+
+      #btn-start{
+        position:absolute;
+        left: -1px;
+        border-radius: 10px;
+        border: white 5px solid;
+        width: 100%;
+        height: 100%; 
+        text-align: center;
+        background-color:lightgrey;
+        color: white;
+        font-family: "Cinzel", serif;
+        font-weight: bolder;
+        font-size:60px;
+        cursor: pointer;
+        }
+
+        #btn-start:hover{
+        opacity: 0.6;
+        color: black;
+        }
+       
+
+        #text-score,#text-miss,#text-time {
+        font-size:28px;
+        font-weight: bolder;
+        
+        }
+        #textjp{
+        top:-20%;  
+        }
+        #text{
+          top:10%;
+        }
+       #textjp,#text{
+      position: absolute;
+      display: inline-block;
+      left: 10%;
+      text-align: center;
+      line-height: 300px;
+       }
+
+    </style>
+  </head>
+  <body>
+  
+    <div class="bg">
+      <img
+        src=" https://assets.st-note.com/production/uploads/images/25931134/rectangle_large_type_2_c7e0831a458e8cc2e518a8d9ab61cec7.jpeg?fit=bounds&quality=60&width=1280"
+      />
+    </div>
+    <p>SCORE: <span id="text-score">0</span> </p>
+    <p>MISS: <span id="text-miss">0</span> </p>
+    <p>TIME: <span id="text-time">30</span> </p>
+    <div id="gamen">
+      <input type="button" value="夜に駆ける YOASOBI" id="btn-start" />
+      <p id="textjp"></p>
+      <p id="text"></p>
+    </div>
+    <table id="keyboard">
+      <tr>
+        <td id="keyq" >Q</td>
+        <td id="keyw" >W</td>
+        <td id="keye" >E</td>
+        <td id="keyr" >R</td>
+        <td id="keyt" >T</td>
+        <td id="keyy" >Y</td>
+        <td id="keyu" >U</td>
+        <td id="keyi" >I</td>
+        <td id="keyo" >O</td>
+        <td id="keyp" >P</td>
+      </tr>
+      <tr>
+        <td id="keya">A</td>
+        <td id="keys">S</td>
+        <td id="keyd">D</td>
+        <td id="keyf">F</td>
+        <td id="keyg">G</td>
+        <td id="keyh">H</td>
+        <td id="keyj">J</td>
+        <td id="keyk">K</td>
+        <td id="keyl">L</td>
+      </tr>
+      <tr>
+        <td id="keyz">Z</td>
+        <td id="keyx">X</td>
+        <td id="keyc">C</td>
+        <td id="keyv">V</td>
+        <td id="keyb">B</td>
+        <td id="keyn">N</td>
+        <td id="keym">M</td>
+        <td id="keyspace">space</td>   
+      </tr>
+    </table>
+<script src="jquery-3.5.1.min拷貝.js"></script>
+    <script>
+      
+
+      textList = [
+        "shizumu yo u ni",
+        "futari da ke no sora ga hiro ga ru yoru ni",
+        "sa yo na ra da ke da t ta",
+        "so no hitokoto de sube te ga wa ka t ta",
+        "hi ga shizu mi da shi ta sora to kimi no sugata",
+      ];
+
+
+      textListjp = [
+       "沈むように溶けてゆくように",
+       "二人だけの空が広がる夜に",
+       "「さよなら」だけだった",
+       "その一言で全てが分かった",
+       "日が沈み出した空と君の姿",
+      ];
+
+
+      const text = document.getElementById("text");
+      const textjp = document.getElementById("textjp");
+      let numLine = 0;
+      let checkText = [];
+
+  //bgm
+      const audio = new Audio()
+      audio.src = 'https://kento520.tw/audio.mp3'
+      audio.load()
+
+
+  //start    
+      $("#btn-start").click(function () {
+        $('#btn-start').css({'opacity':'0'})
+        audio.play()
+        $("#btn-start").attr("disabled", true);
+
+        timeleft = 30
+        let timer = setInterval(function () {
+           timeleft--;
+          $("#text-time").text(timeleft);
+          if (timeleft === 0) {
+            clearInterval(timer);
+            $("#btn-start").attr("disabled", false);  
+            setTimeout(() => {
+              alert("Game over ");    
+            }, 50);
+          }
+        },1000)
+
+        score = 0;
+        $("#text-score").text(score);
+
+        miss = 0;
+        $("#text-miss").text(miss);
+
+        createText(numLine);
+        keycActive(numLine);
+        createTextjp(numLine);
+      })
+
+      
+      function createText(line) {
+        text.textContent = "";
+        checkText = textList[line].split("").map(function (value) {
+          let span = document.createElement("span");
+          span.textContent = value;
+          text.appendChild(span);
+          return span;
+      })
+      }
+
+     
+      function keycActive(line){
+      for (let text of textList[line]){
+        $(`#key${text}`).addClass('add-yellow')
+      }
+    }
+    
+       function createTextjp(line){
+      textjp.textContent = textListjp[line]
+      
+     } 
+    
+    
+      document.addEventListener("keydown", keydown);
+      function keydown(e) {
+        // 比較するために.textContentをします
+        if (e.key === checkText[0].textContent) {
+          score+=100;
+        $("#text-score").text(score);
+          checkText[0].className = "add-tan";
+
+          // 最前端の文字を削除してshiftを使う
+          checkText.shift();
+
+　　　　　　// 列がゼロになったら新しい列を作る
+          if (checkText.length == 0) {
+            numLine = numLine + 1;
+            createText(numLine);
+            keycActive(numLine);
+            createTextjp(numLine)
+         
+            timeleft = 30
+            timer()
+            timeleft--; 
+          }
+          } 
+          else {
+          alert("miss")
+          score-=100;
+
+          $("#text-score").text(score);
+          miss+=1;
+          $("#text-miss").text(miss);
+           }
+          }  
+      
+         // Keyup
+         $(document).keyup(function(e){
+         $(`#key${event.key}`).removeClass('add-yellow')
+          })　
+    
+    </script>
+  </body>
+</html>
